@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_blocked')->default(false);
+            $table->unsignedBigInteger('blocked_by')->nullable();
+            $table->timestamp('blocked_at')->nullable();
+            $table->integer('checklist_limit')->default(config('checklist.user_limit', 3));
             $table->rememberToken();
             $table->timestamps();
         });
